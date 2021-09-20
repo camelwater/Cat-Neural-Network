@@ -58,9 +58,8 @@ def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 
     m = X.shape[1]                           # number of examples
     (n_x, n_h, n_y) = layers_dims
     
-    # Initialize parameters dictionary, by calling one of the functions you'd previously implemented
+    # Initialize parameters dictionary
     parameters = initialize_parameters(n_x, n_h, n_y)
-    ### END CODE HERE ###
     
     # Get W1, b1, W2 and b2 from the dictionary parameters.
     W1 = parameters["W1"]
@@ -73,10 +72,8 @@ def two_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 
     for i in range(0, num_iterations):
 
         # Forward propagation: LINEAR -> RELU -> LINEAR -> SIGMOID. Inputs: "X, W1, b1, W2, b2". Output: "A1, cache1, A2, cache2".
-        ### START CODE HERE ### (≈ 2 lines of code)
         A1, cache1 = linear_activation_forward(X, W1, b1, "relu")
         A2, cache2 = linear_activation_forward(A1, W2, b2, "sigmoid")
-        ### END CODE HERE ###
         
         # Compute cost
         cost = compute_cost(A2, Y)
@@ -136,10 +133,9 @@ def L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 30
     parameters -- parameters learnt by the model. They can then be used to predict.
     """
 
-    np.random.seed(1)
+    # np.random.seed(1)
     costs = []                         # keep track of cost
     
-    # Parameters initialization. (≈ 1 line of code)
     parameters = initialize_parameters_deep(layers_dims)
     
     # Loop (gradient descent)
@@ -179,8 +175,8 @@ def L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 30
       parameters = L_layer_model(train_x, train_y, layers_dims, num_iterations = 2500, print_cost = True)
   
   def classify_image():
-      my_image = "cat.jpg" # change this to the name of your image file 
-      my_label_y = [1] # the true class of your image (1 -> cat, 0 -> non-cat)
+      my_image = "cat.jpg" # image file
+      my_label_y = [1] # class of image (1 -> cat, 0 -> non-cat)
 
       fname = "images/" + my_image
       image = np.array(ndimage.imread(fname, flatten=False))
